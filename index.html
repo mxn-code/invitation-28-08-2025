@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding On 28/08/2025</title>
+    <link rel="icon" type="image/png" href="image/iconms.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+
+    <script>
+      document.addEventListener("contextmenu", (event) =>
+        event.preventDefault()
+      );
+      document.onkeydown = function (e) {
+        if (
+          e.key === "F12" ||
+          (e.ctrlKey &&
+            e.shiftKey &&
+            (e.key === "I" || e.key === "C" || e.key === "J")) ||
+          (e.ctrlKey && e.key === "U")
+        ) {
+          return false;
+        }
+      };
+    </script>
+
+    <style></style>
+  </head>
+  <body>
+    <video autoplay muted loop playsinline id="bgVideo">
+      <source src="assets/weddingmp423.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="envelope" onclick="openModal()">
+      <span>💌 𝓒𝓵𝓲𝓬𝓴 𝓣𝓸 𝓞𝓹𝓮𝓷 𝓘𝓷𝓿𝓲𝓽𝓪𝓽𝓲𝓸𝓷</span>
+      <img src="image/3.png" alt="Envelope Icon" />
+    </div>
+
+    <div class="modal" id="inviteModal">
+      <div class="popup" id="cardPopup">
+        <audio
+          id="bgMusic"
+          src="assets/Wedding.mp3"
+          preload="auto"
+          volume="1"
+          loop
+        ></audio>
+
+        <button
+          id="audioToggle"
+          onclick="toggleAudio()"
+          style="
+            position: fixed;
+            top: -50px;
+            left: 20px;
+            z-index: 1000;
+            padding: 8px 12px;
+            background: rgba(92, 89, 89, 0.8);
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+          "
+        >
+          🔊
+        </button>
+        <div class="download-container">
+          <a
+            href="assets/invitation 28-08-2025.pdf"
+            download
+            class="download-btn"
+          >
+            <img
+              src="image/download_icon.png"
+              alt="Download"
+              style="vertical-align: middle"
+          /></a>
+          <span class="tooltip-text">Download Invitation</span>
+        </div>
+
+        <button class="close-btn" onclick="closeModal()">✖</button>
+        <div class="flip-card" onclick="flipCard(this)">
+          <div class="flip-side front">
+            <img src="image/1.png" alt="Front Invitation" />
+            <a
+              href="https://maps.app.goo.gl/us4ji9UG5ubnp2FPA"
+              target="_blank"
+              class="overlay-link"
+              >CHURCH</a
+            >
+            <a
+              href="https://maps.app.goo.gl/giqv7kFdjjYJRE2m9"
+              target="_blank"
+              class="overlay-link2"
+              >AUDITORIUM</a
+            >
+          </div>
+
+          <div class="flip-side back">
+            <img src="image/2.png" alt="Back Invitation" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openModal() {
+        document.querySelector(".envelope").style.opacity = "0";
+        document.getElementById("inviteModal").classList.add("active");
+
+        const music = document.getElementById("bgMusic");
+        music.play().catch((err) => {
+          console.log("Autoplay blocked, user must interact first.");
+        });
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("inviteModal");
+        const popup = document.getElementById("cardPopup");
+        const envelope = document.querySelector(".envelope");
+        const music = document.getElementById("bgMusic");
+
+        let fadeAudio = setInterval(() => {
+          if (music.volume > 0.05) {
+            music.volume -= 0.05;
+          } else {
+            clearInterval(fadeAudio);
+            music.pause();
+            music.currentTime = 0;
+            music.volume = 1;
+          }
+        }, 100);
+
+        modal.classList.remove("active");
+        popup.classList.remove("flipped");
+        envelope.style.opacity = "1";
+      }
+
+      function flipCard(card) {
+        card.parentElement.classList.toggle("flipped");
+      }
+
+      function toggleAudio() {
+        const music = document.getElementById("bgMusic");
+        const toggleBtn = document.getElementById("audioToggle");
+
+        if (music.paused) {
+          music.play();
+          toggleBtn.textContent = "🔊";
+        } else {
+          music.pause();
+          toggleBtn.textContent = "🔇";
+        }
+      }
+    </script>
+  </body>
+</html>

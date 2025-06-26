@@ -1,0 +1,324 @@
+body {
+  margin: 0;
+  background: url("imgg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: "Georgia", serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.envelope {
+  width: 480px;
+  height: 700px;
+  background: #e7c8b0;
+  border: 2px solid #d4a373;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s, opacity 0.5s;
+  position: relative;
+}
+
+.envelope:hover {
+  transform: scale(1.05);
+}
+
+.envelope span {
+  font-size: 20px;
+  color: #4a2f1f;
+  margin-bottom: 10px;
+  font-family: "Cursive", serif;
+}
+
+.envelope img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  object-fit: contain;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.popup {
+  background: transparent;
+  width: 90vw;
+  max-width: 500px;
+  aspect-ratio: 5 / 7;
+  position: relative;
+  animation: slideOut 0.8s ease-out forwards;
+}
+
+.music-btn {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+
+.download-container {
+  position: absolute;
+  bottom: 10px;
+  left: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.download-btn {
+  background: none;
+  padding: 6px 12px;
+  font-size: 20px;
+  color: #333;
+  border: none;
+  text-decoration: none;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.download-btn:hover {
+  background: #f3f3f3;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  background-color: none;
+  color: #fdb067;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 12px;
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  font-family: "Dancing Script", cursive;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.download-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.download-container img {
+  width: 35px;
+  height: 35px;
+}
+
+a[title] img {
+  transition: transform 0.2s;
+}
+
+a[title]:hover img {
+  transform: scale(1.2);
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateY(100px) scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.flip-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 2s;
+  transform-style: preserve-3d;
+  cursor: crosshair;
+}
+
+.popup.flipped .flip-card {
+  transform: rotateY(180deg);
+}
+
+.flip-side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.flip-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.overlay-link,
+.overlay-link2 {
+  position: absolute;
+  bottom: 37%;
+  background: #f0eded;
+  color: #413939;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  z-index: 2;
+}
+
+.overlay-link {
+  left: 15%;
+}
+.overlay-link2 {
+  right: 10%;
+}
+
+.close-btn {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  font-size: 20px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Responsive Fixes */
+@media (max-width: 600px) {
+  .envelope {
+    width: 90%;
+    height: auto;
+  }
+
+  .envelope span {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .overlay-link,
+  .overlay-link2 {
+    font-size: 12px;
+    bottom: 37%;
+    padding: 6px 10px;
+  }
+
+  .close-btn {
+    font-size: 18px;
+  }
+
+  .download-container {
+    position: absolute;
+    bottom: 10px;
+    left: 137px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .download-btn {
+    background: none;
+    padding: 6px 12px;
+    font-size: 20px;
+    color: #333;
+    border: none;
+    text-decoration: none;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .download-btn:hover {
+    background: #f3f3f3;
+  }
+
+  .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    background-color: none;
+    color: #fdb067;
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px 12px;
+    position: absolute;
+    bottom: 40px;
+    right: 0;
+    font-family: "Dancing Script", cursive;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .download-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .download-container img {
+    width: 32px;
+    height: 32px;
+  }
+
+  a[title] img {
+    transition: transform 0.2s;
+  }
+
+  a[title]:hover img {
+    transform: scale(1.2);
+  }
+}
